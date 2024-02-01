@@ -1,0 +1,11 @@
+import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
+
+import react from "@astrojs/react";
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [tailwind(), react()],
+  site: "https://juangr4.github.io",
+  base: "/ptable-quiz",
+});

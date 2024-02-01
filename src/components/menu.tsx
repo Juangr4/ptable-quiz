@@ -1,0 +1,41 @@
+import type { FC } from "react";
+import { useGameStore } from "../store";
+
+export const Menu: FC = () => {
+  const { guess, nextGuess, grade, resetGame } = useGameStore();
+  const restart = () => {
+    if (grade) {
+      resetGame();
+    }
+    nextGuess();
+  };
+  return (
+    <div className="p-4">
+      {!guess && !grade && (
+        <button
+          className="border-2 border-black p-2 rounded-md hover:bg-gray-400"
+          onClick={restart}
+        >
+          Comenzar Juego
+        </button>
+      )}
+      {guess && (
+        <>
+          <h3 className="text-3xl">
+            Elemento a encontrar:{" "}
+            <span className="font-bold">{guess.name}</span>
+          </h3>
+          <button onClick={resetGame}>Reiniciar</button>
+        </>
+      )}
+      {grade && (
+        <>
+          <h3 className="text-3xl">
+            Nota final: <span className="font-bold">{grade}</span>
+          </h3>
+          <button onClick={restart}>Hacer de nuevo</button>
+        </>
+      )}
+    </div>
+  );
+};
