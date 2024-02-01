@@ -20,20 +20,21 @@ export const Menu: FC = () => {
         </button>
       )}
       {guess && (
-        <>
-          <h3 className="text-3xl">
-            Elemento a encontrar:{" "}
-            <span className="font-bold">{guess.name}</span>
-          </h3>
-          <button onClick={resetGame}>Reiniciar</button>
-        </>
+        <h3 className="text-3xl">
+          Elemento a encontrar: <span className="font-bold">{guess.name}</span>
+        </h3>
       )}
       {grade && (
         <>
           <h3 className="text-3xl">
-            Nota final: <span className="font-bold">{grade}</span>
+            Nota: <span className="font-bold">{Math.round(grade)}</span>%
           </h3>
-          <button onClick={restart}>Hacer de nuevo</button>
+          <button
+            className="border-2 border-black rounded-md p-1 hover:bg-gray-400"
+            onClick={resetGame}
+          >
+            Reiniciar
+          </button>
         </>
       )}
     </div>

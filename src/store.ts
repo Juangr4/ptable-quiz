@@ -12,6 +12,9 @@ type State = {
   resetGame: () => void;
 };
 
+const failurePunishment = 50 / elements.length;
+const errorPunishment = 100 / elements.length;
+
 export const useGameStore = create<State>((set) => ({
   availableElements: [...elements].sort(() => Math.random() - 0.5),
   attempts: 0,
@@ -20,18 +23,12 @@ export const useGameStore = create<State>((set) => ({
   nextGuess: () =>
     set((state) => {
       const answers = state.answers;
-      if (state.attempts >= 3) answers.errors += 1;
-      else if (state.attempts > 0) answers.failures += 1;
-      answers.total += 1;
+      let punishment = 0;
+      if (state.attempts >= 3) punishment = errorPunishment;
+      else if (state.attempts > 0) punishment = failurePunishment;
       const availableElements = state.availableElements;
       const guess = availableElements.pop();
-      const grade = guess
-        ? undefined
-        : Math.round(
-            100 -
-              answers.errors * (100 / answers.total) -
-              answers.failures * (50 / answers.total)
-          ) / 10;
+      const grade = (state.grade ? state.grade : 100) - punishment;
       return {
         availableElements,
         guess,

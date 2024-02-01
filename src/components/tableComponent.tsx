@@ -17,7 +17,7 @@ export const TableComponent: FC<{ element: TableElement }> = ({ element }) => {
   }, [attempts]);
 
   const onClick = () => {
-    if (color || grade) return;
+    if (color) return;
     if (guess?.atomicNumber === element.atomicNumber) {
       switch (attempts) {
         case 0:
@@ -38,7 +38,7 @@ export const TableComponent: FC<{ element: TableElement }> = ({ element }) => {
 
   return (
     <div
-      className="border-4 border-black h-16 w-16 p-0.5 break-words hover:bg-gray-300"
+      className="border-4 border-black h-10 w-10 lg:h-16 lg:w-16 p-0.5 break-words hover:bg-gray-300"
       style={{
         gridColumnStart: element.position[0],
         gridRowStart: element.position[1],
@@ -46,7 +46,9 @@ export const TableComponent: FC<{ element: TableElement }> = ({ element }) => {
       }}
       onClick={onClick}
     >
-      <p className="text-sm font-thin">{element.atomicNumber}</p>
+      <p className="text-sm font-thin hidden lg:block">
+        {element.atomicNumber}
+      </p>
       {color && <p className="font-semibold text-lg">{element.symbol}</p>}
     </div>
   );

@@ -288,7 +288,7 @@ export const elements: TableElement[] = [
   {
     atomicNumber: 50,
     symbol: "Sn",
-    name: "Esta├▒o",
+    name: "Estaño",
   },
   {
     atomicNumber: 51,
