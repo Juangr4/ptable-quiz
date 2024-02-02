@@ -38,7 +38,7 @@ export const TableComponent: FC<{ element: TableElement }> = ({ element }) => {
 
   return (
     <div
-      className="border-4 border-black h-10 w-10 lg:h-16 lg:w-16 p-0.5 break-words hover:bg-gray-300"
+      className="lg:border-4 border-2 border-black w-[34px] h-[34px] lg:h-12 lg:w-12 xl:h-16 xl:w-16 p-0.5 break-words hover:bg-gray-300"
       style={{
         gridColumnStart: element.position[0],
         gridRowStart: element.position[1],
@@ -49,7 +49,9 @@ export const TableComponent: FC<{ element: TableElement }> = ({ element }) => {
       <p className="text-sm font-thin hidden lg:block">
         {element.atomicNumber}
       </p>
-      {color && <p className="font-semibold text-lg">{element.symbol}</p>}
+      {color && (
+        <p className="font-semibold lg:text-lg text-sm">{element.symbol}</p>
+      )}
     </div>
   );
 };
